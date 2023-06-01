@@ -6,5 +6,6 @@
             assertNull(demoUtils.checkNull(str1), "Object should be null");
             assertNotNull(demoUtils.checkNull(str2), "Object should not be null");
     ```
-2. using @BeforeEach, @AfterEach, @BeforeAll and @AfterAll
+2. Using @BeforeEach, @AfterEach, @BeforeAll and @AfterAll
 3. Custom Display Names
+4. Using SameNotSame and TrueFalse
