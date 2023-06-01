@@ -7,3 +7,4 @@
             assertNotNull(demoUtils.checkNull(str2), "Object should not be null");
     ```
 2. using @BeforeEach, @AfterEach, @BeforeAll and @AfterAll
+3. Custom Display Names
