@@ -2,10 +2,11 @@ package com.guru2test.junitDemo;
 
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@DisplayNameGeneration(DisplayNameGeneration.)
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class DemoUtilsTest {
 
 
@@ -19,8 +20,8 @@ public class DemoUtilsTest {
     }
 
     @Test
-    @DisplayName("Equals and Not Equals")
-    void testEqualsAndNotEquals(){
+   // @DisplayName("Equals and Not Equals")
+    void test_Equals_And_Not_Equals(){
 
         //System.out.println("Running test: testEqualsAndNotEquals");
         // set up
@@ -32,8 +33,8 @@ public class DemoUtilsTest {
     }
 
     @Test
-    @DisplayName("Null and Not Null")
-    void testNullAndNotNull(){
+    //@DisplayName("Null and Not Null")
+    void test_Null_And_Not_Null(){
 
         //System.out.println("Running test: testNullAndNotNull");
         // set up
