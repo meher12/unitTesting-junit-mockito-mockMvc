@@ -6,3 +6,6 @@
 4. Junit Assertions::  SameNotSame and TrueFalse
 5. Junit Assertions:: Array Equals, Iterable Equals and Lines Match
 6. Junit Assertions:: Throws, DoesNotThrow and Timeouts
+7. Running test in order:: 
+   * Use `MethodOrderer.MethodName.class` if not using `@DisplayName` from `MethodOrderer.DisplayName.class`
+   * Use Order annotation `@Order` from `OrderAnnotation.class`

@@ -10,6 +10,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 //@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+//@TestMethodOrder(MethodOrderer.DisplayName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DemoUtilsTest {
     DemoUtils demoUtils;
 
@@ -22,6 +24,7 @@ public class DemoUtilsTest {
 
     @Test
     @DisplayName("Equals and Not Equals")
+    @Order(1)
     void testEqualsAndNotEquals(){
 
         //System.out.println("Running test: testEqualsAndNotEquals");
@@ -35,6 +38,7 @@ public class DemoUtilsTest {
 
     @Test
     @DisplayName("Null and Not Null")
+    @Order(0)
     void testNullAndNotNull(){
 
         //System.out.println("Running test: testNullAndNotNull");
@@ -59,6 +63,7 @@ public class DemoUtilsTest {
 
     @Test
     @DisplayName("True and False")
+    @Order(30)
     void testTrueFalse(){
         int gradeOne = 10;
         int gradeTwo = 5;
@@ -84,6 +89,7 @@ public class DemoUtilsTest {
 
     @Test
     @DisplayName("Lines Match")
+    @Order(50)
     void testLineMatch(){
         List<String> theList = List.of("guru", "2", "test");
         assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
