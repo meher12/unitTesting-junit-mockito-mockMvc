@@ -101,3 +101,4 @@
       • A test should only run if specific environment variables or system properties are set
     * Create a ConditionalTest class:
       - Junit Conditional:: `@EnabledOnOs` and `@Disabled`
+      - Junit Conditional:: ` @EnabledOnJre` and `@EnabledForJreRange`
