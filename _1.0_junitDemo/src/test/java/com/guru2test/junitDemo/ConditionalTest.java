@@ -45,4 +45,14 @@ public class ConditionalTest {
     @EnabledForJreRange(min=JRE.JAVA_17)
     void testOnlyForJavaRangeMin() {
     }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "GURU2TEST_ENV", matches = "DEV")
+    void testOnlyForDevEnvironment() {
+    }
+
+    @Test
+    @EnabledIfSystemProperty(named = "GURU2TEST_SYS_PROP", matches = "CI_CD_DEPLOY")
+    void testOnlyForSystemProperty() {
+    }
 }
