@@ -65,3 +65,31 @@
           ``` 
         - By default, Maven surefire plugin will not show @DisplayName in reports:
           * Surefire Extensions and Reports Configuration for @DisplayName found in https://maven.apache.org/surefire/maven-surefire-plugin/examples/junit-platform.html (to show method name must be True)
+        - Generate code coverage reports with Maven:
+           ```
+             <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                    <execution>
+                         <!-- This goal is bound by default to Maven's initialize phase -->
+                        <id>jacoco-prepare</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+             </plugin>
+           ```
+           ```shell
+              mvn clean test
+           ```
+          See report generate by jacoco inside target/site/jacoco
