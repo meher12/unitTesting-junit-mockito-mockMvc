@@ -9,3 +9,4 @@
 2. Using @BeforeEach, @AfterEach, @BeforeAll and @AfterAll
 3. Custom Display Names
 4. Using SameNotSame and TrueFalse
+5. Junit Assertions Array Equals, Iterable Equals and Lines Match

@@ -4,6 +4,8 @@ package com.guru2test.junitDemo;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 //@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -16,7 +18,7 @@ public class DemoUtilsTest {
     @BeforeEach
     void setupBeforeEach(){
         demoUtils = new DemoUtils();
-        System.out.println("@BeforeEach executes before the execution of each test method");
+        //System.out.println("@BeforeEach executes before the execution of each test method");
     }
 
     @Test
@@ -65,6 +67,27 @@ public class DemoUtilsTest {
         assertTrue(demoUtils.isGreater(gradeOne, gradeTwo), "This should return true");
         assertFalse(demoUtils.isGreater(gradeTwo, gradeOne), "This should return false");
 
+    }
+
+    @Test
+    @DisplayName("Array Equals")
+    void testArrayEquals(){
+        String[] stringArray = {"A", "B", "C"} ;
+        assertArrayEquals(stringArray, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays should be the same");
+    }
+
+    @Test
+    @DisplayName("Iterable Equals")
+    void testIterableEquals(){
+        List<String> theList = List.of("guru", "2", "test");
+        assertIterableEquals(theList, demoUtils.getAcademyInList(), "Expented list should be same as actual list");
+    }
+
+    @Test
+    @DisplayName("Lines Match")
+    void testLineMatch(){
+        List<String> theList = List.of("guru", "2", "test");
+        assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
     }
 
     /* @AfterEach
