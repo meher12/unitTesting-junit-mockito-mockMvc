@@ -5,3 +5,4 @@
 3. Junit API:: Custom Display Names
 4. Junit Assertions::  SameNotSame and TrueFalse
 5. Junit Assertions:: Array Equals, Iterable Equals and Lines Match
+6. Junit Assertions:: Throws, DoesNotThrow and Timeouts

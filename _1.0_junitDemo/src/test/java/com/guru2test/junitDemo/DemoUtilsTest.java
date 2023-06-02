@@ -4,14 +4,13 @@ package com.guru2test.junitDemo;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 
+import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 //@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class DemoUtilsTest {
-
-
     DemoUtils demoUtils;
 
     // Create object before each test
@@ -88,6 +87,21 @@ public class DemoUtilsTest {
     void testLineMatch(){
         List<String> theList = List.of("guru", "2", "test");
         assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
+    }
+
+    @DisplayName("Throws and Does Not Throw")
+    @Test
+    void testThrowsAndDoesNotThrow(){
+        assertThrows(Exception.class, ()-> {demoUtils.throwException(-1);},"should throw exception");
+        assertDoesNotThrow( ()-> {demoUtils.throwException(7);},"should not throw exception");
+    }
+
+    @DisplayName("Timeout")
+    @Test
+    void testTimeout(){
+        assertTimeoutPreemptively(Duration.ofSeconds(3),()-> {demoUtils.checkTimeout();},
+                "Method should execute in 3 seconds");
+
     }
 
     /* @AfterEach
