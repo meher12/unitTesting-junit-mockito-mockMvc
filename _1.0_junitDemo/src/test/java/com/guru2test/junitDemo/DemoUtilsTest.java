@@ -36,6 +36,13 @@ public class DemoUtilsTest {
         assertNotEquals(6,  demoUtils.add(1,9), "1 + 9 must not be  6");
     }
 
+
+    @DisplayName("Multiply")
+    @Test
+    void testMultiply(){
+        assertEquals(12, demoUtils.multiply(4,3), "expected result should be 12");
+    }
+
     @Test
     @DisplayName("Null and Not Null")
     @Order(0)
