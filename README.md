@@ -113,3 +113,5 @@
     * create a FizzBuzzTest class in main/tdd package
 3. Refactor the code and improve on design
 4. Repeat the process
+5. Parameterized Tests: [Parameterized Tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
+   * Create CSV file and use `@ParameterizedTest` and `@CsvFileSource`

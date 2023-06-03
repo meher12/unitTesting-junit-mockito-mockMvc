@@ -1,15 +1,13 @@
 package com.guru2test.tdd;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FizzBuzzTest {
-
-
-
-
 
     // If number is divisible by 3, print Fizz
     @DisplayName("Divisible by Three")
@@ -49,6 +47,16 @@ public class FizzBuzzTest {
         //fail("fail");
         String expected = "1";
         assertEquals(expected, FizzBuzz.compute(1), "Should return 1");
+    }
+
+    // ParameterizedTest data from CSV file
+    @DisplayName("Testing with Small data CSV File")
+    @ParameterizedTest(name = "value={0}, expected={1}")
+    @CsvFileSource(resources = "/small-test-data.csv")
+    @Order(5)
+    void testSmallDataFile(int value, String expected) {
+
+        assertEquals(expected, FizzBuzz.compute(value));
     }
 
 }
