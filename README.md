@@ -115,3 +115,4 @@
 4. Repeat the process
 5. Parameterized Tests: [Parameterized Tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
    * Create CSV file and use `@ParameterizedTest` and `@CsvFileSource`
+   * Using the three method for small, medium and large data file
