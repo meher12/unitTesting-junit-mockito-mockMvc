@@ -1,7 +1,7 @@
 # Spring Boot Unit Testing with JUnit, Mockito and MockMvc
-### JUnit Review:
-####  In 1.0_junitDemo project:
-##### Create the DemoUtilsTest class
+## 1- JUnit Review:
+###  In 1.0_junitDemo project:
+#### Create the DemoUtilsTest class
 1. Junit Assertions::  assertEquals, assertNotEquals, assertNull and assertNotNull 
 2. Junit API::  `@BeforeEach`, `@AfterEach`, `@BeforeAll` and `@AfterAll`
 3. Junit API:: Custom Display Names
@@ -105,8 +105,8 @@
       - Junit Conditional:: `@EnabledOnOs` and `@Disabled`
       - Junit Conditional:: `@EnabledOnJre` and `@EnabledForJreRange`
       - Junit Conditional:: `@EnabledIfEnvironmentVariable` and `@EnabledIfSystemProperty`
-### Test Driven Development:
-#### FizzBuzz Project:
+## 2- Test Driven Development:
+### FizzBuzz Project:
 1. Write a failing test:
    * create a FizzBuzzTest class in test/tdd package
 2. Write code to make the test pass:
@@ -116,4 +116,4 @@
 5. Parameterized Tests: [Parameterized Tests](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests)
    * Create CSV file and use `@ParameterizedTest` and `@CsvFileSource`
    * Using the three method for small, medium and large data file
-## Spring Boot Unit Testing Support:
+## 3- Spring Boot Unit Testing Support:
