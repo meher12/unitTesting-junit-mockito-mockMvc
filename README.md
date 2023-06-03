@@ -109,6 +109,7 @@
 ### FizzBuzz Project:
 1. Write a failing test:
    * create a FizzBuzzTest class in test/tdd package
-2. Write code to make the test pass
+2. Write code to make the test pass:
+    * create a FizzBuzzTest class in main/tdd package
 3. Refactor the code
 4. Repeat the process
