@@ -111,5 +111,5 @@
    * create a FizzBuzzTest class in test/tdd package
 2. Write code to make the test pass:
     * create a FizzBuzzTest class in main/tdd package
-3. Refactor the code
+3. Refactor the code and improve on design
 4. Repeat the process
