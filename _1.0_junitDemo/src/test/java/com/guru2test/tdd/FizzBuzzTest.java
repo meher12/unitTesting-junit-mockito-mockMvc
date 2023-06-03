@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FizzBuzzTest {
 
 
-    // If number is divisible by 3 and 5, print FizzBuzz
-    // If number is NOT divisible by 3 or 5, then print the number
+
+
 
     // If number is divisible by 3, print Fizz
     @DisplayName("Divisible by Three")
@@ -29,6 +29,26 @@ public class FizzBuzzTest {
         //fail("fail");
         String expected = "Buzz";
         assertEquals(expected, FizzBuzz.compute(5), "Should return Buzz");
+    }
+
+    // If number is divisible by 3 and 5, print FizzBuzz
+    @DisplayName("Divisible by Five AND Three")
+    @Test
+    @Order(3)
+    void testForDivisibleByThreeAndFive() {
+        //fail("fail");
+        String expected = "FizzBuzz";
+        assertEquals(expected, FizzBuzz.compute(15), "Should return FizzBuzz");
+    }
+
+    // If number is NOT divisible by 3 or 5, then print the number
+    @DisplayName("Divisible by Five OR Three")
+    @Test
+    @Order(4)
+    void testForDivisibleByThreeOrFive() {
+        //fail("fail");
+        String expected = "1";
+        assertEquals(expected, FizzBuzz.compute(1), "Should return 1");
     }
 
 }
