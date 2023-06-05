@@ -163,6 +163,7 @@
 6. MockBean: `@MockBean` instead of `@Mock` AND  `@Autowired` instead of `@InjectMocks`
 7. MockBean: testAssertNotNull method has `assertNotNull`
 8. Throwing Exceptions with Mocks:
+       
        ```
           @DisplayName("Throw runtime error")
           @Test
