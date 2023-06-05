@@ -126,6 +126,7 @@
 ## 04- Spring Boot Unit Testing -  [Mocking with Mockito](https://site.mockito.org/):
 1. Adding DAO and Service package
 2. Create Mock for DAO And Inject Mock into Service:
+   * Create `MockAnnotationTest` class:
      ```
      //Create Mock for the DAO
         @Mock
@@ -150,7 +151,8 @@
 5. Verify method calls:
     ```
      //Verify method calls
-        verify(applicationDao).addGradeResultsForSingleClass(studentGrades.getMathGradeResults());
+        verify(applicationDao).addGradeResultsForSingleClass(
+                       studentGrades.getMathGradeResults());
 
         verify(applicationDao, times(1)).addGradeResultsForSingleClass(
                 studentGrades.getMathGradeResults());
@@ -158,3 +160,4 @@
     <div align="center">
         <img src="SetupExpectations.jpg" width="600px"></img> 
     </div>
+6. MockBean: `@MockBean` instead of `@Mock` AND  `@Autowired` instead of `@InjectMocks`
