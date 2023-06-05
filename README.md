@@ -161,3 +161,4 @@
         <img src="SetupExpectations.jpg" width="600px"></img> 
     </div>
 6. MockBean: `@MockBean` instead of `@Mock` AND  `@Autowired` instead of `@InjectMocks`
+7. MockBean: `testAssertNotNull`

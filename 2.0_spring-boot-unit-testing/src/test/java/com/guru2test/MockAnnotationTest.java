@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -63,8 +64,7 @@ public class MockAnnotationTest {
         verify(applicationDao, times(1)).addGradeResultsForSingleClass(
                 studentGrades.getMathGradeResults());
     }
-
-
+    //By @MockBean and @Annotation
     @DisplayName("Find Gpa")
     @Test
     public void assertEqualsTestFindGpa() {
@@ -76,5 +76,12 @@ public class MockAnnotationTest {
                 .getStudentGrades().getMathGradeResults()));
     }
 
-
+    @DisplayName("Not Null")
+    @Test
+    public void testAssertNotNull() {
+        when(applicationDao.checkNull(studentGrades.getMathGradeResults()))
+                .thenReturn(true);
+        assertNotNull(applicationService.checkNull(studentOne.getStudentGrades()
+                .getMathGradeResults()), "Object should not be null");
+    }
 }
