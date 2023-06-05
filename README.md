@@ -162,3 +162,22 @@
     </div>
 6. MockBean: `@MockBean` instead of `@Mock` AND  `@Autowired` instead of `@InjectMocks`
 7. MockBean: testAssertNotNull method has `assertNotNull`
+8. Throwing Exceptions with Mocks:
+       ```
+          @DisplayName("Throw runtime error")
+          @Test
+          public void throwRuntimeError() {
+             CollegeStudent nullStudent = (CollegeStudent) context.getBean("collegeStudent");
+
+             //Do throw an exception when the method is called
+              doThrow(new RuntimeException()).when(applicationDao).checkNull(nullStudent);
+
+             //Assert that the exception was thrown
+              assertThrows(RuntimeException.class, () -> {
+                applicationService.checkNull(nullStudent);
+              });
+
+             verify(applicationDao, times(1)).checkNull(nullStudent);
+           }
+       ```
+
