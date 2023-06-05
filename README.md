@@ -123,5 +123,15 @@
 3. Spring boot Unit Testing:: assertEquals and assertNotEquals
 4. Spring boot Unit Testing:: assertTrue, assertFalse and assertNotNull
 5. Spring boot Unit Testing:: createStudentWithoutGradesInit, verifyStudentsArePrototypes and findGradePointAverage
-## 04- Spring Boot Unit Testing - Mocking with Mockito [Mocking framework](https://site.mockito.org/):
+## 04- Spring Boot Unit Testing -  [Mocking with Mockito](https://site.mockito.org/):
 1. Adding DAO and Service package
+2. Create Mock for DAO And Inject Mock into Service:
+ ```
+ //Create Mock for the DAO
+    @Mock
+    private ApplicationDao applicationDao;
+ 
+ //Inject mock into Service
+    @InjectMocks
+    private ApplicationService applicationService;
+ ```
