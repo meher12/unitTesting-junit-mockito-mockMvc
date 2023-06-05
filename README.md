@@ -126,12 +126,35 @@
 ## 04- Spring Boot Unit Testing -  [Mocking with Mockito](https://site.mockito.org/):
 1. Adding DAO and Service package
 2. Create Mock for DAO And Inject Mock into Service:
- ```
- //Create Mock for the DAO
-    @Mock
-    private ApplicationDao applicationDao;
- 
- //Inject mock into Service
-    @InjectMocks
-    private ApplicationService applicationService;
- ```
+     ```
+     //Create Mock for the DAO
+        @Mock
+        private ApplicationDao applicationDao;
+     
+     //Inject mock into Service
+        @InjectMocks
+        private ApplicationService applicationService;
+     ```
+3. Setup expectations:
+   ```
+      //When method addGradeResultsForSingleClass(..) is called then return 100.0
+        when(applicationDao.addGradeResultsForSingleClass(
+                studentGrades.getMathGradeResults())).thenReturn(100.00);
+    ```
+4. Call method under test and assert results:
+    ```
+    //Call method under test and assert results
+      assertEquals(100, applicationService.addGradeResultsForSingleClass(
+                studentOne.getStudentGrades().getMathGradeResults()));
+    ```
+5. Verify method calls:
+    ```
+     //Verify method calls
+        verify(applicationDao).addGradeResultsForSingleClass(studentGrades.getMathGradeResults());
+
+        verify(applicationDao, times(1)).addGradeResultsForSingleClass(
+                studentGrades.getMathGradeResults());
+    ```
+    <div align="center">
+        <img src="SetupExpectations.jpg" width="600px"></img> 
+    </div>
