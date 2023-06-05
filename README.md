@@ -122,3 +122,4 @@
 2. Spring boot Unit Testing:: Read `application.properties` and Inject Spring Beans
 3. Spring boot Unit Testing:: assertEquals and assertNotEquals
 4. Spring boot Unit Testing:: assertTrue, assertFalse and assertNotNull
+5. Spring boot Unit Testing:: createStudentWithoutGradesInit, verifyStudentsArePrototypes and findGradePointAverage
