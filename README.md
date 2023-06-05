@@ -119,4 +119,5 @@
 ## 3- Spring Boot Unit Testing Support:
 1. Create project `2.0_spring-boot-unit-testing` to see all dependency tree `mvn dependency:tree`
    * Must be the project has the same package name in `java package` and `test package`
-   * Read application.properties and Inject Spring Beans
+2. Spring boot Unit Testing:: Read `application.properties` and Inject Spring Beans
+3. Spring boot Unit Testing:: assertEquals and assertNotEquals
