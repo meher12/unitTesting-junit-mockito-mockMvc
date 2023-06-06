@@ -66,7 +66,7 @@
           `mvn clean test` then `mvn site -DgenerateReports=false`
           ``` 
         - By default, Maven surefire plugin will not show @DisplayName in reports:
-          * Surefire Extensions and Reports Configuration for @DisplayName found in [this page](https://maven.apache.org/surefire/maven-surefire-plugin/examples/junit-platform.html){:target="_blank"} (to show method name must be True)
+          * Surefire Extensions and Reports Configuration for @DisplayName found in [this page](https://maven.apache.org/surefire/maven-surefire-plugin/examples/junit-platform.html){:target="_blank" rel="noopener"} (to show method name must be True)
         - Generate code coverage reports with Maven:
            ```
              <plugin>
@@ -123,7 +123,7 @@
 3. Spring boot Unit Testing:: assertEquals and assertNotEquals
 4. Spring boot Unit Testing:: assertTrue, assertFalse and assertNotNull
 5. Spring boot Unit Testing:: createStudentWithoutGradesInit, verifyStudentsArePrototypes and findGradePointAverage
-## 04- Spring Boot Unit Testing -  [Mocking with Mockito](https://site.mockito.org/){:target="_blank"}:
+## 04- Spring Boot Unit Testing -  [Mocking with Mockito](https://site.mockito.org/){:target="_blank" rel="noopener"} :
 1. Adding DAO and Service package
 2. Create Mock for DAO And Inject Mock into Service:
    * Create `MockAnnotationTest` class:
@@ -181,7 +181,7 @@
              verify(applicationDao, times(1)).checkNull(nullStudent);
            }
        ```
-## 05- Unit Testing - [Reflection Test Utils](https://docs.spring.io/spring-framework/docs/5.0.2.RELEASE/kdoc-api/spring-framework/org.springframework.test.util/-reflection-test-utils/){:target="_blank"}
+## 05- Unit Testing - [Reflection Test Utils](https://docs.spring.io/spring-framework/docs/5.0.2.RELEASE/kdoc-api/spring-framework/org.springframework.test.util/-reflection-test-utils/){:target="_blank" rel="noopener"}
 1. Adding private Id in CollegeStudent class
 2. Create ReflectionTestUtilsTest class :
    * Adding invoke private method and get private field
