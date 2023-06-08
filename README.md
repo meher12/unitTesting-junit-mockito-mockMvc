@@ -192,3 +192,5 @@
    1. Create StudentAndGradeServiceTest class in test/java package and create <b>Failing Test</b>
    2.  StudentAndGradeServiceTest:: Make the <b> Test Pass </b>
 3. Setup and Cleanup data with @BeforeEach and @AfterEach 
+4. Delete Student:
+   1. create deleteStudentService method with fail test and then make the test pass
