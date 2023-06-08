@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -72,6 +73,7 @@ public class StudentAndGradeServiceTest {
 
    }
 
+   @Sql("/insertData.sql")
    @Test
    public void getGradebookService(){
        Iterable<CollegeStudent> iterableCollegeStudents = studentService.getGradebook();
@@ -79,8 +81,8 @@ public class StudentAndGradeServiceTest {
        for (CollegeStudent collegeStudent: iterableCollegeStudents ) {
            collegeStudents.add(collegeStudent);
        }
-
-       assertEquals(1, collegeStudents.size());
+        // Test passed because we have one student inserted by  @BeforeEach and 4 student in the sql Data file
+       assertEquals(5, collegeStudents.size());
    }
 
    @AfterEach

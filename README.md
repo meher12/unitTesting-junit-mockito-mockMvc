@@ -195,3 +195,4 @@
 4. Delete Student:
    * Create deleteStudentService method with fail test and then make the test pass
 5. DataBase Config and get all student in database by the method getGradebookService 
+6. GradeBook Test with @Sql
