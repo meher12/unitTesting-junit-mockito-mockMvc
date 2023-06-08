@@ -193,4 +193,5 @@
    2.  StudentAndGradeServiceTest:: Make the <b> Test Pass </b>
 3. Setup and Cleanup data with @BeforeEach and @AfterEach 
 4. Delete Student:
-   1. create deleteStudentService method with fail test and then make the test pass
+   * Create deleteStudentService method with fail test and then make the test pass
+5. DataBase Config and get all student in database by the method getGradebookService 
