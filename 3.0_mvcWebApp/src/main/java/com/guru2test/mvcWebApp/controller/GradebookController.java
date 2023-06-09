@@ -20,6 +20,8 @@ public class GradebookController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getStudents(Model m) {
         Iterable<CollegeStudent> collegeStudents = studentAndGradeService.getGradebook();
+
+        //  got a list of student and add as model attribute
         m.addAttribute("students", collegeStudents);
         return "index";
     }
@@ -27,6 +29,9 @@ public class GradebookController {
     public String createStudent(@ModelAttribute("student") CollegeStudent student, Model m){
         studentAndGradeService.createStudent(student.getFirstname(), student.getLastname(),
                 student.getEmailAddress());
+        // After we create a student, got a list of student and add as model attribute
+        Iterable<CollegeStudent> collegeStudents = studentAndGradeService.getGradebook();
+        m.addAttribute("students", collegeStudents);
         return "index";
     }
     @GetMapping("/studentInformation/{id}")

@@ -38,7 +38,7 @@ public class StudentAndGradeServiceTest {
     @BeforeEach
     public void setupDataBase(){
         jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address)" +
-                "values (1, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
+                "values (30, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
 
     }
     @Test
