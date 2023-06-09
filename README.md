@@ -208,3 +208,14 @@
 </div>
 
 1. Create GradebookControllerTest class and make the <b>Test Setup</b> (step 1 and step 2 in the picture)
+2. Test getStudentHttpRequest methode:
+
+    ```
+            //Create expected result
+            List<CollegeStudent> collegeStudentList = new ArrayList<>(Arrays.asList(studentOne, studentTwo));
+            // When method getGradebook(..) is called then return collegeStudentList
+            when(studentAndGradeServiceMock.getGradebook()).thenReturn(collegeStudentList);
+    
+            // Call method under test and assert results
+            assertIterableEquals(collegeStudentList, studentAndGradeServiceMock.getGradebook());
+    ```
