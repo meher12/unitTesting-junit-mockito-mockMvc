@@ -235,5 +235,7 @@
    * Apply TDD:
      1. Send a Post request to the controller: 
         1. Create th object to insert in the db by MockHttpServletRequest 
-           then make a <b> Fail Test </b> because the methode not allowed
+           then make a  <b> Fail Test </b>  because the mapping post not allowed in GradebookController
+        2. Fix our failing test by Implement POST mapping in our
+            GradebookController and make the <b> Passing Test</b>
      2. Verify results by accessing data using the DAO
