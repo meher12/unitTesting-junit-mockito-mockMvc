@@ -246,3 +246,6 @@
         1. Return <b>Test Fails </b> because the controller method doesn't do anything! 
         2. Create a <b>Passing Test</b>
 5. Updates hard coded HTML in index.html
+6. Delete Student
+   * Apply TDD
+     1. Create a failing test first
