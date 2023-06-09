@@ -238,4 +238,9 @@
            then make a  <b> Fail Test </b>  because the mapping post not allowed in GradebookController
         2. Fix our failing test by Implement POST mapping in our
             GradebookController and make the <b> Passing Test </b>
-     2. Verify results by accessing data using the DAO
+     2. Verify student was added to the database using the DAO
+        ```
+          CollegeStudent verifyStudent = studentDao.findByEmailAddress("maher.khe@guru2test_school.com");
+          assertNotNull(verifyStudent, "Student should be found");
+        ```
+        1. Return Test Fails because the controller method doesn't do anything! 

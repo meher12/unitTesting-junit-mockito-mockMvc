@@ -2,6 +2,7 @@ package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
 import com.guru2test.mvcWebApp.models.GradebookCollegeStudent;
+import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 
@@ -46,6 +48,9 @@ class GradebookControllerTest {
 	// Inject the MockMvc
 	@Autowired
 	private MockMvc mockMvc;
+
+	@Autowired
+	private StudentDao studentDao;
 
 	@Mock
 	private StudentAndGradeService studentAndGradeServiceMock;
@@ -104,6 +109,10 @@ class GradebookControllerTest {
 				         .andExpect(status().isOk()).andReturn();
 		ModelAndView mav = mvcResult.getModelAndView();
 		ModelAndViewAssert.assertViewName(mav,  "index");
+
+		// verify result if exist in the database
+		 CollegeStudent verifyStudent = studentDao.findByEmailAddress("maher.khe@guru2test_school.com");
+		 assertNotNull(verifyStudent, "Student should be found");
 	}
 	@AfterEach
 	public void setupAfterTransaction(){
