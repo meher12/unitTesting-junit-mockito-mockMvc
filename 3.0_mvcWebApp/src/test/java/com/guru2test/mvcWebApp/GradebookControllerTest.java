@@ -12,7 +12,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.ModelAndViewAssert;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +24,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @TestPropertySource("/application.properties")
@@ -60,9 +65,16 @@ class GradebookControllerTest {
 		//Call method under test and assert results
 		assertIterableEquals(collegeStudentList, studentAndGradeServiceMock.getGradebook());
 
-		// Perform web request
+		// Perform a GET request to "/" Setting expectation for status OK
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/"))
+				.andExpect(status().isOk()).andReturn();
 
-		// Define expectations
+		ModelAndView mav = mvcResult.getModelAndView();
+
+		// index is the view name (page name in html)
+		ModelAndViewAssert.assertViewName(mav, "index");
+
+
 
 
 	}

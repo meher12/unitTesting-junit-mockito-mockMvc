@@ -219,3 +219,15 @@
             // Call method under test and assert results
             assertIterableEquals(collegeStudentList, studentAndGradeServiceMock.getGradebook());
     ```
+3. Assert View Name: we can use the ModelAndViewAssert class from the Spring Test framework to assert the view name.
+    Here's an example of how you can define an assertViewName :
+    ```
+        // Perform a GET request to "/" Setting expectation for status OK
+		  MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/"))
+				.andExpect(status().isOk()).andReturn();
+
+		  ModelAndView mav = mvcResult.getModelAndView();
+
+		 // index is the view name (page name in html)
+		    ModelAndViewAssert.assertViewName(mav, "index");
+    ```
