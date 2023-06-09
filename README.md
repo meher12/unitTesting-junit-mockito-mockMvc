@@ -207,4 +207,4 @@
         <img src="webcontrolleroverview.jpg" width="700px"></img> 
 </div>
 
-1. Create GradebookControllerTest class and make the <b>Test Setup</b> 
+1. Create GradebookControllerTest class and make the <b>Test Setup</b> (step 1 and step 2 in the picture)
