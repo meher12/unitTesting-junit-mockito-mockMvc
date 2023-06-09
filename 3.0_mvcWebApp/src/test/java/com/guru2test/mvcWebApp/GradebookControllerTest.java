@@ -126,7 +126,7 @@ class GradebookControllerTest {
 	@Test
 	public void deleteStudentHttpRequest() throws Exception {
 
-		assertTrue(studentDao.findById(1).isPresent());
+		assertTrue(studentDao.findById(10).isPresent());
 
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
 						.get("/delete/student/{id}", 1))
