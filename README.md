@@ -250,3 +250,5 @@
    * Apply TDD
      1. Create a failing test first
      2. Create a passing test by create delete mapping in  GradebookController
+        (Add code to GradeBookController to delete student ... make the test pass)
+     3. Add code to GradeBookController to check for error page ... make the test pass

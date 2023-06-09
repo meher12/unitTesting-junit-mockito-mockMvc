@@ -129,7 +129,7 @@ class GradebookControllerTest {
 		assertTrue(studentDao.findById(10).isPresent());
 
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-						.get("/delete/student/{id}", 1))
+						.get("/delete/student/{id}", 10))
 				.andExpect(status().isOk()).andReturn();
 
 		ModelAndView mav = mvcResult.getModelAndView();
@@ -137,7 +137,7 @@ class GradebookControllerTest {
 		ModelAndViewAssert.assertViewName(mav, "index");
 
 		// MAke sure student was deleted
-		assertFalse(studentDao.findById(1).isPresent());
+		assertFalse(studentDao.findById(10).isPresent());
 	}
 	@AfterEach
 	public void setupAfterTransaction(){
