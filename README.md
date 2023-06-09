@@ -237,5 +237,5 @@
         1. Create th object to insert in the db by MockHttpServletRequest 
            then make a  <b> Fail Test </b>  because the mapping post not allowed in GradebookController
         2. Fix our failing test by Implement POST mapping in our
-            GradebookController and make the <b> Passing Test</b>
+            GradebookController and make the <b> Passing Test </b>
      2. Verify results by accessing data using the DAO
