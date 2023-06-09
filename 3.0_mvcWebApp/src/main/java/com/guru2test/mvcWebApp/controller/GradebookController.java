@@ -25,6 +25,8 @@ public class GradebookController {
     }
     @PostMapping(value = "/")
     public String createStudent(@ModelAttribute("student") CollegeStudent student, Model m){
+        studentAndGradeService.createStudent(student.getFirstname(), student.getLastname(),
+                student.getEmailAddress());
         return "index";
     }
     @GetMapping("/studentInformation/{id}")

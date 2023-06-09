@@ -243,4 +243,5 @@
           CollegeStudent verifyStudent = studentDao.findByEmailAddress("maher.khe@guru2test_school.com");
           assertNotNull(verifyStudent, "Student should be found");
         ```
-        1. Return Test Fails because the controller method doesn't do anything! 
+        1. Return <b>Test Fails </b> because the controller method doesn't do anything! 
+        2. Create a <b>Passing Test</b>
