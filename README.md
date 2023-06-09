@@ -199,10 +199,10 @@
 ### Web Controller Testing:
 ##### Development Process:
 <div align="center">
-        <img src="developmentprocess.jpg" width="600px"></img> 
+        <img src="developmentprocess.jpg" width="400px"></img> 
 </div>
 
 ##### Development Process step by step:
 <div align="center">
-        <img src="webcontrolleroverview.jpg" width="600px"></img> 
+        <img src="webcontrolleroverview.jpg" width="700px"></img> 
 </div>
