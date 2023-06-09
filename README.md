@@ -231,3 +231,9 @@
 		 // index is the view name (page name in html)
 		    ModelAndViewAssert.assertViewName(mav, "index");
     ```
+4. Test case: Create a student in the database
+   * Apply TDD:
+     1. Send a Post request to the controller: 
+        1. Create th object to insert in the db by MockHttpServletRequest 
+           then make a <b> Fail Test </b> because the methode not allowed
+     2. Verify results by accessing data using the DAO
