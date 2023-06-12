@@ -2,6 +2,7 @@ package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
 import com.guru2test.mvcWebApp.models.MathGrade;
+import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
 import org.junit.jupiter.api.AfterEach;
@@ -30,16 +31,19 @@ public class StudentAndGradeServiceTest {
 
     @Autowired
     private StudentDao studentDao;
+    @Autowired
+    private MathGradesDao mathGradesDao;
 
     // JdbcTemplate is a class in the Spring JDBC framework which simplifies the use of JDBC and helps to avoid common errors. It provides many methods for querying and updating databases. Spring Boot automatically
     // creates a JdbcTemplate when it detects H2
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     // Insert a sample data
     @BeforeEach
     public void setupDataBase(){
         jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address)" +
-                "values (30, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
+                "values (1, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
 
     }
     @Test

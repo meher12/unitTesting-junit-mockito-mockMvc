@@ -254,4 +254,5 @@
      3. Add code to GradeBookController to check for error page ... make the test pass
 ### GradeBook App - Student Grades:
 1. TDD for Student and Grade Service:
-   * Create a fail test
+   * Create a Failing test
+   * Create a Passing test
