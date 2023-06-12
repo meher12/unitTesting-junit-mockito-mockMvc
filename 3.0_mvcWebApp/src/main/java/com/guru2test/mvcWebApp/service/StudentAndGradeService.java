@@ -44,22 +44,19 @@ public class StudentAndGradeService {
     @Autowired
     private HistoryGradesDao historyGradesDao;
 
-    public void createStudent(String firstName, String lastName, String emailAddress){
+    public void createStudent(String firstName, String lastName, String emailAddress) {
         CollegeStudent student = new CollegeStudent(firstName, lastName, emailAddress);
         student.setId(0);
         studentDao.save(student);
     }
 
     public boolean checkIfStudentIsNull(int id) {
-        Optional<CollegeStudent> student =  studentDao.findById(id);
-        if(student.isPresent()){
-            return true;
-        }
-        return false;
+        Optional<CollegeStudent> student = studentDao.findById(id);
+        return student.isPresent();
     }
 
     public void deleteStudent(int id) {
-        if(checkIfStudentIsNull(id)){
+        if (checkIfStudentIsNull(id)) {
             studentDao.deleteById(id);
         }
     }
@@ -70,12 +67,12 @@ public class StudentAndGradeService {
     }
 
     public boolean createGrade(double grade, int studentId, String gradeType) {
-        if(! checkIfStudentIsNull(studentId)){
+        if (!checkIfStudentIsNull(studentId)) {
             return false;
         }
 
-        if(grade >=0 && grade<=100){
-            if(gradeType.equals("math")){
+        if (grade >= 0 && grade <= 100) {
+            if (gradeType.equals("math")) {
                 // @Qualifier("mathGrades")
                 mathGrade.setId(0);
                 mathGrade.setGrade(grade);
@@ -83,7 +80,7 @@ public class StudentAndGradeService {
                 mathGradesDao.save(mathGrade);
                 return true;
             }
-            if(gradeType.equals("science")){
+            if (gradeType.equals("science")) {
                 // @Qualifier("scienceGrades")
                 scienceGrade.setId(0);
                 scienceGrade.setGrade(grade);
@@ -92,8 +89,7 @@ public class StudentAndGradeService {
                 return true;
             }
 
-            if(gradeType.equals("history")){
-
+            if (gradeType.equals("history")) {
                 historyGrade.setId(0);
                 historyGrade.setGrade(grade);
                 historyGrade.setStudentId(studentId);
@@ -101,6 +97,38 @@ public class StudentAndGradeService {
                 return true;
             }
         }
-      return false;
+        return false;
+    }
+
+    public int deleteGrade(int id, String gradeType) {
+        int studentId = 0;
+
+        if (gradeType.equals("math")) {
+            Optional<MathGrade> grade = mathGradesDao.findById(id);
+            if (!grade.isPresent()) {
+                return studentId;
+            }
+            studentId = grade.get().getStudentId();
+            mathGradesDao.deleteById(id);
+        }
+
+        if (gradeType.equals("science")) {
+            Optional<ScienceGrade> grade = scienceGradesDao.findById(id);
+            if (!grade.isPresent()) {
+                return studentId;
+            }
+            studentId = grade.get().getStudentId();
+            mathGradesDao.deleteById(id);
+        }
+
+        if (gradeType.equals("history")) {
+            Optional<HistoryGrade> grade = historyGradesDao.findById(id);
+            if (!grade.isPresent()) {
+                return studentId;
+            }
+            studentId = grade.get().getStudentId();
+            mathGradesDao.deleteById(id);
+        }
+        return studentId;
     }
 }

@@ -258,7 +258,7 @@
       * Create a Failing test
       * Create a Passing test
    2. The similar process for Science grades:
-      * To resolve "Failed to load ApplicationContext error " must write this code in MvcWebAppApplication main class
+      * To resolve "Failed to load ApplicationContext error" must write this code in MvcWebAppApplication main class
        ```
           @Bean
           @Scope(value="prototype")
@@ -272,3 +272,4 @@
    5. Insert/Cleanup sample data with @BeforeEach and @AfterEach for Math, Science and History grades
    6. Update tests, for student grades verify that we have a specific number of grades:
       Refactor grade service for Collection
+   7. TDD to delete grades (math, science and history)
