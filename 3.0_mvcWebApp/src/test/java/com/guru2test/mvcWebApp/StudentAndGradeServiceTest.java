@@ -53,6 +53,9 @@ public class StudentAndGradeServiceTest {
     public void setupDataBase() {
         jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address)" + "values (1, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
 
+        jdbcTemplate.execute("insert into math_grade(id, student_id, grade) values (1, 1, 100.00)");
+        jdbcTemplate.execute("insert into science_grade(id, student_id, grade) values (1, 1, 100.00)");
+        jdbcTemplate.execute("insert into history_grade(id, student_id, grade) values (1, 1, 100.00)");
     }
 
     @Test
@@ -136,6 +139,9 @@ public class StudentAndGradeServiceTest {
     @AfterEach
     public void setupAfterTransaction() {
         jdbcTemplate.execute("DELETE FROM student");
+        jdbcTemplate.execute("DELETE FROM math_grade");
+        jdbcTemplate.execute("DELETE FROM science_grade");
+        jdbcTemplate.execute("DELETE FROM history_grade");
     }
 
 }
