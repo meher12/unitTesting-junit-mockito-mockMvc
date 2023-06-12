@@ -1,6 +1,7 @@
 package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
+import com.guru2test.mvcWebApp.models.MathGrade;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
 import org.junit.jupiter.api.AfterEach;
@@ -83,6 +84,20 @@ public class StudentAndGradeServiceTest {
        }
         // Test passed because we have one student inserted by  @BeforeEach and 4 student in the sql Data file
        assertEquals(5, collegeStudents.size());
+   }
+
+   @Test
+   public void createGradeService(){
+
+        // Create the grade : grade=80.50, id=1, type="math
+        assertTrue(studentService.createGrade(80.50, 1, "math"));
+
+       // Get all grades with studentId
+       Iterable<MathGrade> mathGrades = mathGradesDao.findGradeByStudentId(1);
+
+       // Verify there id grades
+       assertTrue(mathGrades.iterator().hasNext(), "Student has math grades");
+
    }
 
    @AfterEach
