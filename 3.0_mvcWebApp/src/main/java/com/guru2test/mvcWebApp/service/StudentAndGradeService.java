@@ -1,8 +1,10 @@
 package com.guru2test.mvcWebApp.service;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
+import com.guru2test.mvcWebApp.models.HistoryGrade;
 import com.guru2test.mvcWebApp.models.MathGrade;
 import com.guru2test.mvcWebApp.models.ScienceGrade;
+import com.guru2test.mvcWebApp.repository.HistoryGradesDao;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
@@ -29,13 +31,18 @@ public class StudentAndGradeService {
     private ScienceGrade scienceGrade;
 
     @Autowired
-    private ScienceGrade scienceGrades;
+    @Qualifier("historyGrade")
+    private HistoryGrade historyGrade;
+
 
     @Autowired
     private MathGradesDao mathGradesDao;
 
     @Autowired
     private ScienceGradesDao scienceGradesDao;
+
+    @Autowired
+    private HistoryGradesDao historyGradesDao;
 
     public void createStudent(String firstName, String lastName, String emailAddress){
         CollegeStudent student = new CollegeStudent(firstName, lastName, emailAddress);
@@ -78,10 +85,19 @@ public class StudentAndGradeService {
             }
             if(gradeType.equals("science")){
                 // @Qualifier("scienceGrades")
-                scienceGrades.setId(0);
-                scienceGrades.setGrade(grade);
-                scienceGrades.setStudentId(studentId);
-                scienceGradesDao.save(scienceGrades);
+                scienceGrade.setId(0);
+                scienceGrade.setGrade(grade);
+                scienceGrade.setStudentId(studentId);
+                scienceGradesDao.save(scienceGrade);
+                return true;
+            }
+
+            if(gradeType.equals("history")){
+
+                historyGrade.setId(0);
+                historyGrade.setGrade(grade);
+                historyGrade.setStudentId(studentId);
+                historyGradesDao.save(historyGrade);
                 return true;
             }
         }

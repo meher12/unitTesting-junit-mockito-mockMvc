@@ -1,8 +1,10 @@
 package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
+import com.guru2test.mvcWebApp.models.HistoryGrade;
 import com.guru2test.mvcWebApp.models.MathGrade;
 import com.guru2test.mvcWebApp.models.ScienceGrade;
+import com.guru2test.mvcWebApp.repository.HistoryGradesDao;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
@@ -12,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
@@ -39,6 +40,9 @@ public class StudentAndGradeServiceTest {
 
     @Autowired
     private ScienceGradesDao scienceGradesDao;
+
+    @Autowired
+    private HistoryGradesDao historyGradesDao;
 
     // JdbcTemplate is a class in the Spring JDBC framework which simplifies the use of JDBC and helps to avoid common errors. It provides many methods for querying and updating databases. Spring Boot automatically
     // creates a JdbcTemplate when it detects H2
@@ -101,15 +105,18 @@ public class StudentAndGradeServiceTest {
 
         // Create the grade : grade=80.50, id=1, type="math
         assertTrue(studentService.createGrade(80.50, 1, "math"));
-       assertTrue(studentService.createGrade(80.50, 1, "science"));
+        assertTrue(studentService.createGrade(80.50, 1, "science"));
+       assertTrue(studentService.createGrade(80.50, 1, "history"));
 
        // Get all grades with studentId
        Iterable<MathGrade> mathGrades = mathGradesDao.findGradeByStudentId(1);
        Iterable<ScienceGrade> scienceGrades = scienceGradesDao.findGradeByStudentId(1);
+       Iterable<HistoryGrade> historyGrades = historyGradesDao.findGradeByStudentId(1);
 
        // Verify there id grades
        assertTrue(mathGrades.iterator().hasNext(), "Student has math grades");
        assertTrue(scienceGrades.iterator().hasNext(), "Student has science grades");
+       assertTrue(historyGrades.iterator().hasNext(), "Student has history grades");
 
    }
 

@@ -267,3 +267,4 @@
              return new ScienceGrade();
           }
        ```
+   3. History Grades it's the same process

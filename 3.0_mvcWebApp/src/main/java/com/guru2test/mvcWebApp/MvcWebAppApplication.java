@@ -1,6 +1,7 @@
 package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.Grade;
+import com.guru2test.mvcWebApp.models.HistoryGrade;
 import com.guru2test.mvcWebApp.models.MathGrade;
 import com.guru2test.mvcWebApp.models.ScienceGrade;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +29,13 @@ public class MvcWebAppApplication {
 	@Qualifier("scienceGrade")
 	ScienceGrade getScienceGrade(){
 		return new ScienceGrade();
+	}
+
+	@Bean
+	@Scope(value="prototype")
+	@Qualifier("historyGrade")
+	HistoryGrade getHistoryGrade(){
+		return new HistoryGrade();
 	}
 
 
