@@ -2,7 +2,9 @@ package com.guru2test.mvcWebApp.service;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
 import com.guru2test.mvcWebApp.models.MathGrade;
+import com.guru2test.mvcWebApp.models.ScienceGrade;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
+import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,7 +25,17 @@ public class StudentAndGradeService {
     private MathGrade mathGrade;
 
     @Autowired
+    @Qualifier("scienceGrade")
+    private ScienceGrade scienceGrade;
+
+    @Autowired
+    private ScienceGrade scienceGrades;
+
+    @Autowired
     private MathGradesDao mathGradesDao;
+
+    @Autowired
+    private ScienceGradesDao scienceGradesDao;
 
     public void createStudent(String firstName, String lastName, String emailAddress){
         CollegeStudent student = new CollegeStudent(firstName, lastName, emailAddress);
@@ -62,6 +74,14 @@ public class StudentAndGradeService {
                 mathGrade.setGrade(grade);
                 mathGrade.setStudentId(studentId);
                 mathGradesDao.save(mathGrade);
+                return true;
+            }
+            if(gradeType.equals("science")){
+                // @Qualifier("scienceGrades")
+                scienceGrades.setId(0);
+                scienceGrades.setGrade(grade);
+                scienceGrades.setStudentId(studentId);
+                scienceGradesDao.save(scienceGrades);
                 return true;
             }
         }

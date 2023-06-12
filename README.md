@@ -254,5 +254,16 @@
      3. Add code to GradeBookController to check for error page ... make the test pass
 ### GradeBook App - Student Grades:
 1. TDD for Student and Grade Service:
-   * Create a Failing test
-   * Create a Passing test
+   1. process for Math grades:
+      * Create a Failing test
+      * Create a Passing test
+   2. The similar process for Science grades:
+      * To resolve "Failed to load ApplicationContext error " must write this code in MvcWebAppApplication main class
+       ```
+          @Bean
+          @Scope(value="prototype")
+          @Qualifier("scienceGrade")
+          ScienceGrade getScienceGrade(){
+             return new ScienceGrade();
+          }
+       ```

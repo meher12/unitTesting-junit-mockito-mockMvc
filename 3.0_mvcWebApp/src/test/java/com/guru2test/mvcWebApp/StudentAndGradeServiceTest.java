@@ -2,7 +2,9 @@ package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
 import com.guru2test.mvcWebApp.models.MathGrade;
+import com.guru2test.mvcWebApp.models.ScienceGrade;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
+import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
 import org.junit.jupiter.api.AfterEach;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
@@ -33,6 +36,9 @@ public class StudentAndGradeServiceTest {
     private StudentDao studentDao;
     @Autowired
     private MathGradesDao mathGradesDao;
+
+    @Autowired
+    private ScienceGradesDao scienceGradesDao;
 
     // JdbcTemplate is a class in the Spring JDBC framework which simplifies the use of JDBC and helps to avoid common errors. It provides many methods for querying and updating databases. Spring Boot automatically
     // creates a JdbcTemplate when it detects H2
@@ -95,12 +101,15 @@ public class StudentAndGradeServiceTest {
 
         // Create the grade : grade=80.50, id=1, type="math
         assertTrue(studentService.createGrade(80.50, 1, "math"));
+       assertTrue(studentService.createGrade(80.50, 1, "science"));
 
        // Get all grades with studentId
        Iterable<MathGrade> mathGrades = mathGradesDao.findGradeByStudentId(1);
+       Iterable<ScienceGrade> scienceGrades = scienceGradesDao.findGradeByStudentId(1);
 
        // Verify there id grades
        assertTrue(mathGrades.iterator().hasNext(), "Student has math grades");
+       assertTrue(scienceGrades.iterator().hasNext(), "Student has science grades");
 
    }
 
