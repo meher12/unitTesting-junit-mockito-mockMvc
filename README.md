@@ -254,22 +254,23 @@
      3. Add code to GradeBookController to check for error page ... make the test pass
 ### GradeBook App - Student Grades:
 #### TDD for Student and Grade Service:
-   1. process for Math grades:
-      * Create a Failing test
-      * Create a Passing test
-   2. The similar process for Science grades:
-      * To resolve "Failed to load ApplicationContext error" must write this code in MvcWebAppApplication main class
-       ```
-          @Bean
-          @Scope(value="prototype")
-          @Qualifier("scienceGrade")
-          ScienceGrade getScienceGrade(){
-             return new ScienceGrade();
-          }
-       ```
-   3. History Grades it's the same process
-   4. Failing Test (grade range outside of range: 0-100)
-   5. Insert/Cleanup sample data with @BeforeEach and @AfterEach for Math, Science and History grades
-   6. Update tests, for student grades verify that we have a specific number of grades:
-      Refactor grade service for Collection
-   7. TDD to delete grades (math, science and history)
+1. process for Math grades:
+   * Create a Failing test
+   * Create a Passing test
+2. The similar process for Science grades:
+   * To resolve "Failed to load ApplicationContext error" must write this code in MvcWebAppApplication main class
+    ```
+       @Bean
+       @Scope(value="prototype")
+       @Qualifier("scienceGrade")
+       ScienceGrade getScienceGrade(){
+          return new ScienceGrade();
+       }
+    ```
+3. History Grades it's the same process
+4. Failing Test (grade range outside of range: 0-100)
+5. Insert/Cleanup sample data with @BeforeEach and @AfterEach for Math, Science and History grades
+6. Update tests, for student grades verify that we have a specific number of grades:
+   Refactor grade service for Collection
+7. TDD to delete grades (math, science and history)
+8. Test for deleting grade (invalid grade id/invalid subject)
