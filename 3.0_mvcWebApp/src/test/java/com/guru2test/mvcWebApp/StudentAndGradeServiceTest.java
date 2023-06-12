@@ -1,18 +1,12 @@
 package com.guru2test.mvcWebApp;
 
-import com.guru2test.mvcWebApp.models.CollegeStudent;
-import com.guru2test.mvcWebApp.models.HistoryGrade;
-import com.guru2test.mvcWebApp.models.MathGrade;
-import com.guru2test.mvcWebApp.models.ScienceGrade;
+import com.guru2test.mvcWebApp.models.*;
 import com.guru2test.mvcWebApp.repository.HistoryGradesDao;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,19 +38,27 @@ public class StudentAndGradeServiceTest {
     @Autowired
     private HistoryGradesDao historyGradesDao;
 
-    // JdbcTemplate is a class in the Spring JDBC framework which simplifies the use of JDBC and helps to avoid common errors. It provides many methods for querying and updating databases. Spring Boot automatically
+    // JdbcTemplate is a class in the Spring JDBC framework which simplifies the use of JDBC
+    // and helps to avoid common errors.
+    // It provides many methods for querying and updating databases. Spring Boot automatically
     // creates a JdbcTemplate when it detects H2
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
+
+
+
     // Insert a sample data
     @BeforeEach
     public void setupDataBase() {
-        jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address)" + "values (1, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
 
-        jdbcTemplate.execute("insert into math_grade(id, student_id, grade) values (1, 1, 100.00)");
-        jdbcTemplate.execute("insert into science_grade(id, student_id, grade) values (1, 1, 100.00)");
-        jdbcTemplate.execute("insert into history_grade(id, student_id, grade) values (1, 1, 100.00)");
+
+        jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address) values (1, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
+
+        jdbcTemplate.execute("insert into math_grade(id, student_id, grade) values (2, 1, 100.00)");
+        jdbcTemplate.execute("insert into science_grade(id, student_id, grade) values (2, 1, 100.00)");
+        jdbcTemplate.execute("insert into history_grade(id, student_id, grade) values (2, 1, 100.00)");
     }
 
     @Test
@@ -116,9 +119,9 @@ public class StudentAndGradeServiceTest {
         Iterable<HistoryGrade> historyGrades = historyGradesDao.findGradeByStudentId(1);
 
         // Verify there id grades
-        assertTrue(mathGrades.iterator().hasNext(), "Student has math grades");
-        assertTrue(scienceGrades.iterator().hasNext(), "Student has science grades");
-        assertTrue(historyGrades.iterator().hasNext(), "Student has history grades");
+        assertTrue(((Collection<MathGrade>) mathGrades).size() == 2, "Student has math grades");
+        assertTrue(((Collection<ScienceGrade>)scienceGrades).size() == 2, "Student has science grades");
+        assertTrue(((Collection<HistoryGrade>) historyGrades).size() == 2, "Student has history grades");
     }
 
     @Test
@@ -133,7 +136,7 @@ public class StudentAndGradeServiceTest {
         assertFalse(studentService.createGrade(80.50, 2, "math"));
 
         // invalid subject
-        assertFalse(studentService.createGrade(80.50, 2, "literature"));
+        assertFalse(studentService.createGrade(80.50, 1, "literature"));
     }
 
     @AfterEach
