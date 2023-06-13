@@ -1,9 +1,6 @@
 package com.guru2test.mvcWebApp;
 
-import com.guru2test.mvcWebApp.models.Grade;
-import com.guru2test.mvcWebApp.models.HistoryGrade;
-import com.guru2test.mvcWebApp.models.MathGrade;
-import com.guru2test.mvcWebApp.models.ScienceGrade;
+import com.guru2test.mvcWebApp.models.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +12,18 @@ public class MvcWebAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MvcWebAppApplication.class, args);
+	}
+
+	@Bean
+	@Scope(value = "prototype")
+	CollegeStudent getCollegeStudent() {
+		return new CollegeStudent();
+	}
+
+	@Bean
+	@Scope(value = "prototype")
+	Grade getMathGrade(double grade) {
+		return new MathGrade(grade);
 	}
 
 	@Bean

@@ -280,3 +280,4 @@
 ### Set Up SQL Scripts in properties file:
 1. Add SQl to application.properties
 2. Inject SQl into test using @Value
+3. Refactor @BeforeEach and @AfterEach
