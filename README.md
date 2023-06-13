@@ -281,3 +281,4 @@
 1. Add SQl to application.properties
 2. Inject SQl into test using @Value
 3. Refactor @BeforeEach and @AfterEach
+4. Make the same SQL modifications to GradebookControllerTest

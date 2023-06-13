@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -54,6 +55,30 @@ class GradebookControllerTest {
 	@Mock
 	private StudentAndGradeService studentAndGradeServiceMock;
 
+	@Value("${sql.script.create.student}")
+	private String sqlAddStudent;
+
+	@Value("${sql.script.create.math.grade}")
+	private String sqlAddMathGrade;
+
+	@Value("${sql.script.create.science.grade}")
+	private String sqlAddScienceGrade;
+
+	@Value("${sql.script.create.history.grade}")
+	private String sqlAddHistoryGrade;
+
+	@Value("${sql.script.delete.student}")
+	private String sqlDeleteStudent;
+
+	@Value("${sql.script.delete.math.grade}")
+	private String sqlDeleteMathGrade;
+
+	@Value("${sql.script.delete.science.grade}")
+	private String sqlDeleteScienceGrade;
+
+	@Value("${sql.script.delete.history.grade}")
+	private String sqlDeleteHistoryGrade;
+
 	@BeforeAll
 	public static  void setup(){
 		// create th object to insert in the db by MockHttpServletRequest
@@ -65,8 +90,12 @@ class GradebookControllerTest {
 
 	@BeforeEach
 	public void setupDataBase(){
-		jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address)" +
-				"values (10, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");
+	/*	jdbcTemplate.execute("insert into student(id, firstname, lastname, email_address)" +
+				"values (10, 'Eric', 'Roby', 'eric.roby@guru2test_school.com')");*/
+		jdbcTemplate.execute(sqlAddStudent);
+		jdbcTemplate.execute(sqlAddMathGrade);
+		jdbcTemplate.execute(sqlAddScienceGrade);
+		jdbcTemplate.execute(sqlAddHistoryGrade);
 	}
 
 	@Test
@@ -126,10 +155,10 @@ class GradebookControllerTest {
 	@Test
 	public void deleteStudentHttpRequest() throws Exception {
 
-		assertTrue(studentDao.findById(10).isPresent());
+		assertTrue(studentDao.findById(30).isPresent());
 
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-						.get("/delete/student/{id}", 10))
+						.get("/delete/student/{id}", 30))
 				.andExpect(status().isOk()).andReturn();
 
 		ModelAndView mav = mvcResult.getModelAndView();
@@ -137,7 +166,7 @@ class GradebookControllerTest {
 		ModelAndViewAssert.assertViewName(mav, "index");
 
 		// MAke sure student was deleted
-		assertFalse(studentDao.findById(10).isPresent());
+		assertFalse(studentDao.findById(30).isPresent());
 	}
 
 	@Test
@@ -153,7 +182,10 @@ class GradebookControllerTest {
 	}
 	@AfterEach
 	public void setupAfterTransaction(){
-		jdbcTemplate.execute("DELETE FROM student");
+		jdbcTemplate.execute(sqlDeleteStudent);
+		jdbcTemplate.execute(sqlDeleteMathGrade);
+		jdbcTemplate.execute(sqlDeleteScienceGrade);
+		jdbcTemplate.execute(sqlDeleteHistoryGrade);
 	}
 
 

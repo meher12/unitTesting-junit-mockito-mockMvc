@@ -21,8 +21,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 @TestPropertySource("/application.properties")
+@SpringBootTest
 public class StudentAndGradeServiceTest {
 
     @Autowired
