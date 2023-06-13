@@ -174,6 +174,19 @@ public class StudentAndGradeServiceTest {
         assertEquals(0, studentService.deleteGrade(0, "literature"),
                 "No student should have literature class");
     }
+
+    @Test
+    public void studentInformation(){
+        GradebookCollegeStudent gradebookCollegeStudent = studentService.studentInformation(1);
+        assertNotNull(gradebookCollegeStudent);
+        assertEquals(1, gradebookCollegeStudent.getId());
+        assertEquals("Eric", gradebookCollegeStudent.getFirstname());
+        assertEquals("Roby", gradebookCollegeStudent.getLastname());
+        assertEquals("eric.roby@guru2test_school.com", gradebookCollegeStudent.getEmailAddress());
+        assertTrue(gradebookCollegeStudent.getStudentGrades().getMathGradeResults().size() == 1);
+        assertTrue(gradebookCollegeStudent.getStudentGrades().getHistoryGradeResults().size() == 1);
+        assertTrue(gradebookCollegeStudent.getStudentGrades().getScienceGradeResults().size() == 1);
+    }
     @AfterEach
     public void setupAfterTransaction() {
         jdbcTemplate.execute("DELETE FROM student");
