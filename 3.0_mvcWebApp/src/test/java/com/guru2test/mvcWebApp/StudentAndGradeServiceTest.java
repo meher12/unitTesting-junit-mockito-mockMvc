@@ -8,6 +8,7 @@ import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
@@ -37,6 +38,30 @@ public class StudentAndGradeServiceTest {
 
     @Autowired
     private HistoryGradesDao historyGradesDao;
+
+    @Value("${sql.script.create.student}")
+    private String sqlAddStudent;
+
+    @Value("${sql.script.create.math_grade}")
+    private String sqlAddMathGrade;
+
+    @Value("${sql.script.create.science_grade}")
+    private String sqlAddScienceGrade;
+
+    @Value("${sql.script.create.history_grade}")
+    private String sqlAddHistoryGrade;
+
+    @Value("${sql.script.delete.student}")
+    private String sqlDeleteStudent;
+
+    @Value("${sql.script.delete.math_grade}")
+    private String sqlDeleteMathGrade;
+
+    @Value("${sql.script.delete.science_grade}")
+    private String sqlDeleteScienceGrade;
+
+    @Value("${sql.script.delete.history_grade}")
+    private String sqlDeleteHistoryGrade;
 
     // JdbcTemplate is a class in the Spring JDBC framework which simplifies the use of JDBC
     // and helps to avoid common errors.

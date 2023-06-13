@@ -279,3 +279,4 @@
 11. Student Information: Test for student id that doesn't exist
 ### Set Up SQL Scripts in properties file:
 1. Add SQl to application.properties
+2. Inject SQl into test using @Value
