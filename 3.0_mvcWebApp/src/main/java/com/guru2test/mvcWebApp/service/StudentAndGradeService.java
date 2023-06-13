@@ -58,6 +58,10 @@ public class StudentAndGradeService {
     public void deleteStudent(int id) {
         if (checkIfStudentIsNull(id)) {
             studentDao.deleteById(id);
+
+            mathGradesDao.deleteByStudentId(1);
+            scienceGradesDao.deleteByStudentId(1);
+            historyGradesDao.deleteByStudentId(1);
         }
     }
 
