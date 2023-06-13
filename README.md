@@ -277,3 +277,5 @@
 9. Update Test for deleting student and grades : using TDD
 10. Get Student Information: TDD (failing test then passing test)
 11. Student Information: Test for student id that doesn't exist
+### Set Up SQL Scripts in properties file:
+1. Add SQl to application.properties
