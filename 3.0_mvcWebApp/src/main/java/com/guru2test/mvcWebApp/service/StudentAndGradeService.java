@@ -139,6 +139,10 @@ public class StudentAndGradeService {
     }
 
     public GradebookCollegeStudent studentInformation(int id) {
+        // After failing test add this code to check no exist id value
+        if(!checkIfStudentIsNull(id)){
+            return  null;
+        }
 
         Optional<CollegeStudent> student = studentDao.findById(id);
         Iterable<MathGrade> mathGrades = mathGradesDao.findGradeByStudentId(id);

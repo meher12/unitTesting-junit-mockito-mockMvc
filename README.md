@@ -276,3 +276,4 @@
 8. Test for deleting grade (invalid grade id/invalid subject)
 9. Update Test for deleting student and grades : using TDD
 10. Get Student Information: TDD (failing test then passing test)
+11. Student Information: Test for student id that doesn't exist
