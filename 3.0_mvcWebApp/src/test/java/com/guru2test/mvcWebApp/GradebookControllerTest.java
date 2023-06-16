@@ -225,7 +225,8 @@ class GradebookControllerTest {
         ModelAndView mav = mvcResult.getModelAndView();
         ModelAndViewAssert.assertViewName(mav, "studentInformation");
 
-        student = studentAndGradeService.studentInformation(1);
+        // studentId equals to 30
+        student = studentAndGradeService.studentInformation(30);
 
         // size of grade result should have 2
         assertEquals(2, student.getStudentGrades().getMathGradeResults().size());

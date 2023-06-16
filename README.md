@@ -289,3 +289,4 @@
      2. Passing test of studentInformationHttpRequestDoesNotExist method
    * Perform HTTP request Post/grades Params: grade, gradeType, studentId:
      1. Create Grades - Failing test : 404 because haven't implemented POST method yet
+     2. Create Grades - Passing test : create a POST /grades mapping Params: grade, gradeType, studentId
