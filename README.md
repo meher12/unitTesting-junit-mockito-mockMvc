@@ -282,3 +282,6 @@
 2. Inject SQl into test using @Value
 3. Refactor @BeforeEach and @AfterEach
 4. Make the same SQL modifications to GradebookControllerTest
+### MVC Tests - Student Information and Grades:
+1. TDD 
+   1. Failing test of studentInformationHttpRequestDoesNotExist method
