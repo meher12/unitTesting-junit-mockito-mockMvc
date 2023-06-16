@@ -1,6 +1,9 @@
 package com.guru2test.mvcWebApp.service;
 
+
+
 import com.guru2test.mvcWebApp.models.*;
+import org.springframework.ui.Model;
 import com.guru2test.mvcWebApp.repository.HistoryGradesDao;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +49,8 @@ public class StudentAndGradeService {
 
     @Autowired
     private StudentGrades studentGrades;
+
+
 
     public void createStudent(String firstname, String lastname, String emailAddress) {
         CollegeStudent student = new CollegeStudent(firstname, lastname, emailAddress);
@@ -164,10 +170,42 @@ public class StudentAndGradeService {
         studentGrades.setHistoryGradeResults(historyGradesList);
 
        GradebookCollegeStudent gradebookCollegeStudent = new GradebookCollegeStudent(student.get().getId(),
-               student.get().getFirstname(), student.get().getLastname(), student.get().getEmailAddress()
-                , studentGrades);
+               student.get().getFirstname(), student.get().getLastname(), student.get().getEmailAddress(),
+                 studentGrades);
        return gradebookCollegeStudent;
+    }
+
+    public void configureStudentInformationModel(int id, Model m){
+
+        GradebookCollegeStudent studentEntity = studentInformation(id);
+
+        m.addAttribute("student", studentEntity);
+        // Add math average to the model
+        if (studentEntity.getStudentGrades().getMathGradeResults().size() > 0) {
+            m.addAttribute("mathAverage", studentEntity.getStudentGrades().findGradePointAverage(
+                    studentEntity.getStudentGrades().getMathGradeResults()
+            ));
+        } else{
+            m.addAttribute("mathAverage","N/A");
+        }
+
+        // Add science average to the model
+        if (studentEntity.getStudentGrades().getScienceGradeResults().size() > 0) {
+            m.addAttribute("scienceAverage", studentEntity.getStudentGrades().findGradePointAverage(
+                    studentEntity.getStudentGrades().getScienceGradeResults()
+            ));
+        } else{
+            m.addAttribute("scienceAverage","N/A");
+        }
 
 
+        // Add history average to the model
+        if (studentEntity.getStudentGrades().getScienceGradeResults().size() > 0) {
+            m.addAttribute("historyAverage", studentEntity.getStudentGrades().findGradePointAverage(
+                    studentEntity.getStudentGrades().getHistoryGradeResults()
+            ));
+        } else{
+            m.addAttribute("historyAverage","N/A");
+        }
     }
 }
