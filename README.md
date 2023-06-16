@@ -284,5 +284,8 @@
 4. Make the same SQL modifications to GradebookControllerTest
 ### MVC Tests - Student Information and Grades:
 1. TDD 
-   1. Failing test of studentInformationHttpRequestDoesNotExist method
-   2. Passing test of studentInformationHttpRequestDoesNotExist method
+   * Perform HTTP request GET/studentInformation/{id}:
+     1. Failing test of studentInformationHttpRequestDoesNotExist method
+     2. Passing test of studentInformationHttpRequestDoesNotExist method
+   * Perform HTTP request Post/grades Params: grade, gradeType, studentId:
+     1. Create Grades - Failing test : 404 because haven't implemented POST method yet

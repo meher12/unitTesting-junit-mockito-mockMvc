@@ -47,6 +47,9 @@ class GradebookControllerTest {
     @Autowired
     private StudentDao studentDao;
 
+    @Autowired
+    private StudentAndGradeService studentAndGradeService;
+
     @Mock
     private StudentAndGradeService studentAndGradeServiceMock;
 
@@ -201,6 +204,33 @@ class GradebookControllerTest {
 		ModelAndView mav = mvcResult.getModelAndView();
 		ModelAndViewAssert.assertViewName(mav, "error");
 	}
+
+    @Test
+    public void createValidGradeHttpRequest() throws Exception {
+
+        assertTrue(studentDao.findById(30).isPresent());
+        GradebookCollegeStudent student = studentAndGradeService.studentInformation(30);
+
+        // size of list grades is 1 expected value
+        assertEquals(1, student.getStudentGrades().getMathGradeResults().size());
+
+        //Perform HTTP request Post/grades Params: grade, gradeType, studentId
+        MvcResult mvcResult = this.mockMvc.perform(post("/grades")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("grade", "85.00")
+                .param("gradeType", "math")
+                .param("studentId","30"))
+                .andExpect(status().isOk())
+                .andReturn();
+        ModelAndView mav = mvcResult.getModelAndView();
+        ModelAndViewAssert.assertViewName(mav, "studentInformation");
+
+        student = studentAndGradeService.studentInformation(1);
+
+        // size of grade result should have 2
+        assertEquals(2, student.getStudentGrades().getMathGradeResults().size());
+
+    }
 
     @AfterEach
     public void setupAfterTransaction() {
