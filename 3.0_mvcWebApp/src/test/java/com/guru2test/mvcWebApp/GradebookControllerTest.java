@@ -2,8 +2,11 @@ package com.guru2test.mvcWebApp;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
 import com.guru2test.mvcWebApp.models.GradebookCollegeStudent;
+import com.guru2test.mvcWebApp.models.MathGrade;
+import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -52,6 +56,10 @@ class GradebookControllerTest {
 
     @Mock
     private StudentAndGradeService studentAndGradeServiceMock;
+
+    // Inject MathGradesDao
+    @Autowired
+    private MathGradesDao mathGradesDao;
 
     @Value("${sql.script.create.student}")
     private String sqlAddStudent;
@@ -258,6 +266,27 @@ class GradebookControllerTest {
         ModelAndView mav = mvcResult.getModelAndView();
 
         ModelAndViewAssert.assertViewName(mav, "error");
+    }
+
+    @Test
+    public void deleteAValidGradeHttpRequest() throws Exception {
+
+        Optional<MathGrade> mathGrade = mathGradesDao.findById(20);
+
+        assertTrue(mathGrade.isPresent());
+
+        // Delete the grade via HTTP request GET /grades/{id}/{gradeType}
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/grades/{id}/{gradeType}", 20, "math"))
+                .andExpect(status().isOk()).andReturn();
+
+        ModelAndView mav = mvcResult.getModelAndView();
+
+        ModelAndViewAssert.assertViewName(mav, "studentInformation");
+
+        // Confirm grade was really deleted by using assertFalse
+        mathGrade = mathGradesDao.findById(20);
+        assertFalse(mathGrade.isPresent());
     }
 
 

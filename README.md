@@ -283,7 +283,7 @@
 3. Refactor @BeforeEach and @AfterEach
 4. Make the same SQL modifications to GradebookControllerTest
 ### MVC Tests - Student Information and Grades:
-1. TDD 
+1. TDD: 
    * Perform HTTP request GET/studentInformation/{id}:
      1. Failing test of studentInformationHttpRequestDoesNotExist method
      2. Passing test of studentInformationHttpRequestDoesNotExist method
@@ -294,3 +294,6 @@
         attributes for student information from GradebookController class to StudentAndGradeService class
    * Test create grade for invalid Student ID
    * Test create grade for subject is invalid
+   * Delete Grades:
+     1. Failing test: Delete the grade via HTTP request GET /grades/{id}/{gradeType},
+        Test fails 404 because we have not implemented the functionality in GradebookController
