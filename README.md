@@ -298,3 +298,4 @@
      1. Failing test: Delete the grade via HTTP request GET /grades/{id}/{gradeType},
         Test fails 404 because we have not implemented the functionality in GradebookController
      2. Passing test: Add request mapping to delete the grade via HTTP request GET /grades/{id}/{gradeType}
+     3. Test for deleting a grade when grade id and subject are invalid
