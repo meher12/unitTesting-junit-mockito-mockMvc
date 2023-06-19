@@ -2,7 +2,6 @@ package com.guru2test.mvcWebApp.controller;
 
 import com.guru2test.mvcWebApp.models.CollegeStudent;
 import com.guru2test.mvcWebApp.models.Gradebook;
-import com.guru2test.mvcWebApp.models.GradebookCollegeStudent;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,21 +65,21 @@ public class GradebookController {
     // create a POST /grades mapping Params: grade, gradeType, studentId
     @PostMapping("/grades")
     public String createGrade(@RequestParam("grade") double grade,
-                            @RequestParam("gradeType") String gradeType,
-                            @RequestParam("studentId") int studentId, Model m){
+                              @RequestParam("gradeType") String gradeType,
+                              @RequestParam("studentId") int studentId, Model m) {
 
         // if student doesn't exist then return error
-        if(!studentAndGradeService.checkIfStudentIsNull(studentId)){
+        if (!studentAndGradeService.checkIfStudentIsNull(studentId)) {
             return "error";
         }
 
         // create the grade
         boolean success = studentAndGradeService.createGrade(grade, studentId, gradeType);
-        if(!success){
+        if (!success) {
             return "error";
         }
 
-       studentAndGradeService.configureStudentInformationModel(studentId, m);
+        studentAndGradeService.configureStudentInformationModel(studentId, m);
         return "studentInformation";
     }
 

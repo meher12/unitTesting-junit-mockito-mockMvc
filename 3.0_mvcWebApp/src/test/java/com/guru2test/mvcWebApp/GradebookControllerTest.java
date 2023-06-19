@@ -6,7 +6,6 @@ import com.guru2test.mvcWebApp.models.MathGrade;
 import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
-import jakarta.inject.Inject;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -187,7 +186,7 @@ class GradebookControllerTest {
         ModelAndViewAssert.assertViewName(mav, "error");
     }
 
-	@DisplayName("student Information Http Request")
+    @DisplayName("student Information Http Request")
     @Test
     public void studentInformationHttpRequest() throws Exception {
         //Make sure student exists
@@ -200,18 +199,18 @@ class GradebookControllerTest {
         ModelAndViewAssert.assertViewName(mav, "studentInformation");
     }
 
-	@DisplayName("student Information Http Request Does not exist")
-	@Test
-	public void studentInformationHttpRequestDoesNotExist() throws Exception {
-		//Make sure student does not exist
-		assertFalse(studentDao.findById(0).isPresent());
+    @DisplayName("student Information Http Request Does not exist")
+    @Test
+    public void studentInformationHttpRequestDoesNotExist() throws Exception {
+        //Make sure student does not exist
+        assertFalse(studentDao.findById(0).isPresent());
 
-		// Perform HTTP request GET/studentInformation/{id}
-		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/studentInformation/{id}", 0))
-				.andExpect(status().isOk()).andReturn();
-		ModelAndView mav = mvcResult.getModelAndView();
-		ModelAndViewAssert.assertViewName(mav, "error");
-	}
+        // Perform HTTP request GET/studentInformation/{id}
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/studentInformation/{id}", 0))
+                .andExpect(status().isOk()).andReturn();
+        ModelAndView mav = mvcResult.getModelAndView();
+        ModelAndViewAssert.assertViewName(mav, "error");
+    }
 
     @Test
     public void createValidGradeHttpRequest() throws Exception {
@@ -224,10 +223,10 @@ class GradebookControllerTest {
 
         //Perform HTTP request Post/grades Params: grade, gradeType, studentId
         MvcResult mvcResult = this.mockMvc.perform(post("/grades")
-                .contentType(MediaType.APPLICATION_JSON)
-                .param("grade", "85.00")
-                .param("gradeType", "math")
-                .param("studentId","30"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("grade", "85.00")
+                        .param("gradeType", "math")
+                        .param("studentId", "30"))
                 .andExpect(status().isOk())
                 .andReturn();
         ModelAndView mav = mvcResult.getModelAndView();
@@ -306,6 +305,7 @@ class GradebookControllerTest {
 
         ModelAndViewAssert.assertViewName(mav, "error");
     }
+
     @Test
     public void deleteANonValidGradeHttpRequest() throws Exception {
 
