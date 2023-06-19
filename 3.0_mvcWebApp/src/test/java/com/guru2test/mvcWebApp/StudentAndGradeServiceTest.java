@@ -6,7 +6,10 @@ import com.guru2test.mvcWebApp.repository.MathGradesDao;
 import com.guru2test.mvcWebApp.repository.ScienceGradesDao;
 import com.guru2test.mvcWebApp.repository.StudentDao;
 import com.guru2test.mvcWebApp.service.StudentAndGradeService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +24,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 @SpringBootTest
 public class StudentAndGradeServiceTest {
 
@@ -74,11 +77,10 @@ public class StudentAndGradeServiceTest {
     // Insert a sample data
     @BeforeEach
     public void setupDataBase() {
-
-       jdbcTemplate.execute(sqlAddStudent);
-       jdbcTemplate.execute(sqlAddMathGrade);
-       jdbcTemplate.execute(sqlAddScienceGrade);
-       jdbcTemplate.execute(sqlAddHistoryGrade);
+        jdbcTemplate.execute(sqlAddStudent);
+        jdbcTemplate.execute(sqlAddMathGrade);
+        jdbcTemplate.execute(sqlAddScienceGrade);
+        jdbcTemplate.execute(sqlAddHistoryGrade);
     }
 
     @Test
@@ -104,7 +106,6 @@ public class StudentAndGradeServiceTest {
     @Test
     public void deleteStudentService() {
         Optional<CollegeStudent> deletedCollegeStudent = studentDao.findById(30);
-
         Optional<MathGrade> deletedMathGrade = mathGradesDao.findById(20);
         Optional<HistoryGrade> deletedHistoryGrade = historyGradesDao.findById(20);
         Optional<ScienceGrade> deletedScienceGrade = scienceGradesDao.findById(20);
@@ -128,6 +129,8 @@ public class StudentAndGradeServiceTest {
         assertFalse(deletedScienceGrade.isPresent());
 
     }
+
+
 
     @Sql("/insertData.sql")
     @Test
@@ -155,9 +158,15 @@ public class StudentAndGradeServiceTest {
         Iterable<HistoryGrade> historyGrades = historyGradesDao.findGradeByStudentId(30);
 
         // Verify there id grades
+        assertTrue(((Collection<MathGrade>) mathGrades).size() == 2,
+                "Student has math grades");
+        assertTrue(((Collection<ScienceGrade>) scienceGrades).size() == 2);
+        assertTrue(((Collection<HistoryGrade>) historyGrades).size() == 2);
+       /*
         assertEquals(2, ((Collection<MathGrade>) mathGrades).size(), "Student has math grades");
         assertEquals(2, ((Collection<ScienceGrade>) scienceGrades).size(), "Student has science grades");
         assertEquals(2, ((Collection<HistoryGrade>) historyGrades).size(), "Student has history grades");
+        */
     }
 
     @Test
@@ -178,9 +187,9 @@ public class StudentAndGradeServiceTest {
     @Test
     public void deleteGradeService() {
         //If grade delete is successful, should return student id associated with the grade
-        assertEquals(30, studentService.deleteGrade(20, "math"));
-        assertEquals(30, studentService.deleteGrade(20, "science"));
-        assertEquals(30, studentService.deleteGrade(20, "history"));
+        assertEquals(30, studentService.deleteGrade(20, "math"), "Returns student id after delete");
+        assertEquals(30, studentService.deleteGrade(20, "science"),  "Returns student id after delete");
+        assertEquals(30, studentService.deleteGrade(20, "history"), "Returns student id after delete");
     }
 
     @Test
@@ -203,9 +212,12 @@ public class StudentAndGradeServiceTest {
         assertEquals("Eric", gradebookCollegeStudent.getFirstname());
         assertEquals("Roby", gradebookCollegeStudent.getLastname());
         assertEquals("eric.roby@guru2test_school.com", gradebookCollegeStudent.getEmailAddress());
-        assertEquals(30, gradebookCollegeStudent.getStudentGrades().getMathGradeResults().size());
+        assertTrue(gradebookCollegeStudent.getStudentGrades().getMathGradeResults().size() == 30);
+        assertTrue(gradebookCollegeStudent.getStudentGrades().getScienceGradeResults().size() == 30);
+        assertTrue(gradebookCollegeStudent.getStudentGrades().getHistoryGradeResults().size() == 30);
+       /* assertEquals(30, gradebookCollegeStudent.getStudentGrades().getMathGradeResults().size());
         assertEquals(30, gradebookCollegeStudent.getStudentGrades().getHistoryGradeResults().size());
-        assertEquals(30, gradebookCollegeStudent.getStudentGrades().getScienceGradeResults().size());
+        assertEquals(30, gradebookCollegeStudent.getStudentGrades().getScienceGradeResults().size());*/
     }
 
     @Test

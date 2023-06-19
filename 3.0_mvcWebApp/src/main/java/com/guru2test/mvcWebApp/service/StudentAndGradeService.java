@@ -60,7 +60,10 @@ public class StudentAndGradeService {
 
     public boolean checkIfStudentIsNull(int id) {
         Optional<CollegeStudent> student = studentDao.findById(id);
-        return student.isPresent();
+        if (student.isPresent()) {
+            return true;
+        }
+        return false;
     }
 
     public void deleteStudent(int id) {
@@ -130,7 +133,7 @@ public class StudentAndGradeService {
                 return studentId;
             }
             studentId = grade.get().getStudentId();
-            mathGradesDao.deleteById(id);
+            scienceGradesDao.deleteById(id);
         }
 
         if (gradeType.equals("history")) {
@@ -139,7 +142,7 @@ public class StudentAndGradeService {
                 return studentId;
             }
             studentId = grade.get().getStudentId();
-            mathGradesDao.deleteById(id);
+            scienceGradesDao.deleteById(id);
         }
         return studentId;
     }
@@ -160,10 +163,10 @@ public class StudentAndGradeService {
         mathGrades.forEach(mathGradesList::add);
 
         List<Grade> scienceGradesList = new ArrayList<>();
-        mathGrades.forEach(scienceGradesList::add);
+        scienceGrades.forEach(scienceGradesList::add);
 
         List<Grade> historyGradesList = new ArrayList<>();
-        mathGrades.forEach(historyGradesList::add);
+        historyGrades.forEach(historyGradesList::add);
 
         studentGrades.setMathGradeResults(mathGradesList);
         studentGrades.setScienceGradeResults(scienceGradesList);
@@ -200,7 +203,7 @@ public class StudentAndGradeService {
 
 
         // Add history average to the model
-        if (studentEntity.getStudentGrades().getScienceGradeResults().size() > 0) {
+        if (studentEntity.getStudentGrades().getHistoryGradeResults().size() > 0) {
             m.addAttribute("historyAverage", studentEntity.getStudentGrades().findGradePointAverage(
                     studentEntity.getStudentGrades().getHistoryGradeResults()
             ));
