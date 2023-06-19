@@ -301,4 +301,6 @@
      3. Test for deleting a grade when grade id and subject are invalid
 2. Update Student Information Thymeleaf template
 3. Update all test and Show Working App with H2 Embedded Database: with H2 DB only keeps data in memory, 
-   data is lost when app is stopped to resolve this use Mysql DB 
+   data is lost when app is stopped to resolve this use Mysql DB
+## 07- Testing Spring Boot REST APIs:
+   * Setup 4.00_restApiApp project 
