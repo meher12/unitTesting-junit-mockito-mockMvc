@@ -318,4 +318,7 @@
 10. Create Grade for student id that doesn't exist And create a grade for invalid grade type/subject
 11. Delete a Grade: delete HTTP request /grades/{id}/{gradeType}
 12. Delete a Grade when Grade ID Does Not Exist
+13. Delete a Grade with Invalid Grade Type  Subject
+
+#### Mission Accomplished: thanks to Chad and Eric
    

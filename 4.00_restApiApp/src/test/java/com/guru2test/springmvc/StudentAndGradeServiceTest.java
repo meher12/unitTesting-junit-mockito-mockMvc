@@ -125,6 +125,8 @@ public class StudentAndGradeServiceTest {
 
     @Test
     public void studentInformationService() {
+
+        jdbc.execute("insert into student(id,firstname,lastname,email_address) values (1, 'Maher', 'Kh', 'maher.kh@guru2test_school.com')");
         GradebookCollegeStudent gradebookCollegeStudentTest = studentService.studentInformation(1);
 
         assertNotNull(gradebookCollegeStudentTest);
@@ -136,9 +138,9 @@ public class StudentAndGradeServiceTest {
         assertNotNull(gradebookCollegeStudentTest.getStudentGrades().getScienceGradeResults());
         assertNotNull(gradebookCollegeStudentTest.getStudentGrades().getHistoryGradeResults());
 
-        assertEquals("Eric", gradebookCollegeStudentTest.getFirstname());
-        assertEquals("Roby", gradebookCollegeStudentTest.getLastname());
-        assertEquals("eric.roby@luv2code_school.com", gradebookCollegeStudentTest.getEmailAddress());
+        assertEquals("Maher", gradebookCollegeStudentTest.getFirstname());
+        assertEquals("Kh", gradebookCollegeStudentTest.getLastname());
+        assertEquals("maher.kh@guru2test_school.com", gradebookCollegeStudentTest.getEmailAddress());
 
     }
 
@@ -204,7 +206,7 @@ public class StudentAndGradeServiceTest {
     }
 
     @SqlGroup({ @Sql(scripts = "/insertData.sql", config = @SqlConfig(commentPrefix = "`")),
-            @Sql("/overrideData.sql"),
+            @Sql("/overRideData.sql"),
             @Sql("/insertGrade.sql")})
     @Test
     public void getGradebookService() {
