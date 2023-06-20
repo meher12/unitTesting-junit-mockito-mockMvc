@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @TestPropertySource("/application-test.properties")
@@ -128,6 +129,23 @@ public class GradebookControllerTest {
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8)) // application/json
                 .andExpect(jsonPath("$", hasSize(2)));  // $ : root element,  hasSize(1): Verify JSON array size is 1
     }
+
+    @Test
+    public void createStudentHttpRequest() throws Exception {
+        student.setFirstname("Chad");
+        student.setLastname("Darby");
+        student.setEmailAddress("chad_darby@guru2test_school.com");
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(student)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+
+        CollegeStudent verifyStudent = studentDao.findByEmailAddress("chad_darby@guru2test_school.com");
+        assertNotNull(verifyStudent, "Student should be valid.");
+    }
+
 
     @AfterEach
     public void setupAfterTransaction() {
