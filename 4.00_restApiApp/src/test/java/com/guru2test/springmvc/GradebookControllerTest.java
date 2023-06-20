@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @TestPropertySource("/application-test.properties")
@@ -144,6 +144,20 @@ public class GradebookControllerTest {
 
         CollegeStudent verifyStudent = studentDao.findByEmailAddress("chad_darby@guru2test_school.com");
         assertNotNull(verifyStudent, "Student should be valid.");
+    }
+
+    @Test
+    public void deleteStudentHttpRequest() throws Exception {
+        assertTrue(studentDao.findById(1).isPresent());
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/student/{id}", 1))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+                // We initially had 1 student, but just deleted the student verify the JSON response
+                // array size is now 0, hasSize(0)
+                .andExpect(jsonPath("$", hasSize(0)));
+        // Confirm student id 1 was deleted
+        assertFalse(studentDao.findById(1).isPresent());
     }
 
 

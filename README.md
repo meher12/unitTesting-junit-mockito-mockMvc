@@ -310,4 +310,5 @@
 3. Get Student Endpoint: get a list of student as a JSON array,
    using [JsonPath project](https://github.com/json-path/JsonPath) JsonPath allows you to access elements of JSON
 4. Create a student : Send a POST request
+5. Delete Student
    
