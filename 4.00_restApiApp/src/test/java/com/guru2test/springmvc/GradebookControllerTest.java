@@ -1,6 +1,7 @@
 package com.guru2test.springmvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.guru2test.springmvc.models.CollegeStudent;
 import com.guru2test.springmvc.repository.HistoryGradesDao;
 import com.guru2test.springmvc.repository.MathGradesDao;
 import com.guru2test.springmvc.repository.ScienceGradesDao;
@@ -22,7 +23,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @TestPropertySource("/application-test.properties")
 @AutoConfigureMockMvc
@@ -61,6 +66,9 @@ public class GradebookControllerTest {
 
     @Autowired
     private StudentAndGradeService studentService;
+
+    @Autowired
+    private CollegeStudent student;
 
 
     @Value("${sql.script.create.student}")
@@ -107,7 +115,19 @@ public class GradebookControllerTest {
         jdbc.execute(sqlAddHistoryGrade);
     }
 
+    @Test
+    public void getStudentHttpRequest() throws Exception{
+        student.setFirstname("Chad");
+        student.setLastname("Darby");
+        student.setEmailAddress("chad.darby@guru2test_school.com");
+        entityManager.persist(student);
+        entityManager.flush();
 
+        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(status().isOk()) // HTTP status of 200 (OK)
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8)) // application/json
+                .andExpect(jsonPath("$", hasSize(2)));  // $ : root element,  hasSize(1): Verify JSON array size is 1
+    }
 
     @AfterEach
     public void setupAfterTransaction() {

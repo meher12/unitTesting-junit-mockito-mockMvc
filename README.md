@@ -305,6 +305,9 @@
 ## 07- Testing Spring Boot REST APIs:
    * In general, the process is very similar to Spring MVC testing Slight differences for
       content-type and checking JSON results
-   * Setup 4.00_restApiApp project 
-   * Setting up Gradebook Controller Test
+1. Setup 4.00_restApiApp project 
+2. Setting up Gradebook Controller Test
+3. Get Student Endpoint: get a list of student as a JSON array,
+   using [JsonPath project](https://github.com/json-path/JsonPath) JsonPath allows you to access elements of JSON
+
    
