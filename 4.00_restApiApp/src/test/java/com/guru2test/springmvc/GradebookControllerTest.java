@@ -2,6 +2,7 @@ package com.guru2test.springmvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.guru2test.springmvc.models.CollegeStudent;
+import com.guru2test.springmvc.models.MathGrade;
 import com.guru2test.springmvc.repository.HistoryGradesDao;
 import com.guru2test.springmvc.repository.MathGradesDao;
 import com.guru2test.springmvc.repository.ScienceGradesDao;
@@ -246,6 +247,24 @@ public class GradebookControllerTest {
                 .andExpect(jsonPath("$.status", is(404)))
                 .andExpect(jsonPath("$.message", is("Student or Grade was not found")));
     }
+
+    @Test
+    public void deleteAValidGradeHttpRequest() throws Exception {
+
+        Optional<MathGrade> mathGrade = mathGradeDao.findById(1);
+
+        assertTrue(mathGrade.isPresent());
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/grades/{id}/{gradeType}", 1 , "math"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.firstname", is("Eric")))
+                .andExpect(jsonPath("$.lastname", is("Roby")))
+                .andExpect(jsonPath("$.emailAddress", is("eric.roby@guru2test_school.com")))
+                .andExpect(jsonPath("$.studentGrades.mathGradeResults", hasSize(0)));
+    }
+
 
     @AfterEach
     public void setupAfterTransaction() {

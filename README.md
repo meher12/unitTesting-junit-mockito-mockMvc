@@ -316,4 +316,5 @@
 8. Get Student Information Student ID doesn't exist
 9. Create Grade: Post /grades
 10. Create Grade for student id that doesn't exist And create a grade for invalid grade type/subject
+11. Delete a Grade: delete HTTP request /grades/{id}/{gradeType}
    
