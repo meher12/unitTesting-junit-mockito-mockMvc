@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -160,6 +161,16 @@ public class GradebookControllerTest {
         assertFalse(studentDao.findById(1).isPresent());
     }
 
+    @Test
+    public void deleteStudentHttpRequestErrorPage() throws Exception {
+        assertFalse(studentDao.findById(0).isPresent());
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/student/{id}", 0))
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.status", is(404)))
+                .andExpect(jsonPath("$.message", is("Student or Grade was not found")));
+
+    }
 
     @AfterEach
     public void setupAfterTransaction() {
