@@ -303,4 +303,8 @@
 3. Update all test and Show Working App with H2 Embedded Database: with H2 DB only keeps data in memory, 
    data is lost when app is stopped to resolve this use Mysql DB
 ## 07- Testing Spring Boot REST APIs:
+   * In general, the process is very similar to Spring MVC testing Slight differences for
+      content-type and checking JSON results
    * Setup 4.00_restApiApp project 
+   * Setting up Gradebook Controller Test
+   
