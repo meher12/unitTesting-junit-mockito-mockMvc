@@ -314,4 +314,5 @@
 6. Delete Student when Student ID Does Not Exist: Check for HTTP status code 4xx 
 7. Get Student Information: Get HTTP request
 8. Get Student Information Student ID doesn't exist
+9. Create Grade: Post /grades
    
